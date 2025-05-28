@@ -19,11 +19,11 @@ $(document).ready(function() {
                 populateSelect('#propertyTypeSelect', data.propertyTypes);
             })
             .fail(function() {
-                console.error('加载过滤选项失败');
+                console.error('Failed to load filter options');
             });
     }
     
-    // 填充下拉框
+    // Populate dropdown
     function populateSelect(selector, options) {
         const $select = $(selector);
         const defaultOption = $select.find('option:first');
@@ -34,20 +34,20 @@ $(document).ready(function() {
         });
     }
     
-    // 搜索按钮点击事件
+    // Search button click event
     $('#searchBtn').click(function() {
         currentPage = 1;
         searchProperties();
     });
     
-    // 重置按钮点击事件
+    // Reset button click event
     $('#resetBtn').click(function() {
         $('#searchForm')[0].reset();
         currentPage = 1;
         searchProperties();
     });
     
-    // 搜索房产
+    // Search properties
     function searchProperties() {
         const filter = getSearchFilter();
         
@@ -64,14 +64,14 @@ $(document).ready(function() {
                 showLoading(false);
             },
             error: function() {
-                console.error('搜索失败');
+                console.error('Search failed');
                 showLoading(false);
-                displayError('搜索失败，请稍后重试');
+                displayError('Search failed, please try again later');
             }
         });
     }
     
-    // 获取搜索过滤条件
+    // Get search filter criteria
     function getSearchFilter() {
         const priceRange = $('#priceRange').val();
         let minPrice = null;
@@ -94,7 +94,7 @@ $(document).ready(function() {
         };
     }
     
-    // 显示房产列表
+    // Display property list
     function displayProperties(properties) {
         const $container = $('#propertyResults');
         
@@ -102,8 +102,8 @@ $(document).ready(function() {
             $container.html(`
                 <div class="empty-state">
                     <div class="mb-3">🏠</div>
-                    <h5>暂无房产信息</h5>
-                    <p>请尝试调整搜索条件</p>
+                    <h5>No properties found</h5>
+                    <p>Please try adjusting your search criteria</p>
                 </div>
             `);
             return;
@@ -119,7 +119,7 @@ $(document).ready(function() {
         $container.html(html);
     }
     
-    // 创建房产卡片
+    // Create property card
     function createPropertyCard(property) {
         const formattedPrice = formatPrice(property.salePrice);
         const imageUrl = property.imageUrl || '/images/default-property.jpg';
@@ -128,7 +128,7 @@ $(document).ready(function() {
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="property-card">
                     <div class="property-image" style="background-image: url('${imageUrl}'); background-size: cover; background-position: center;">
-                        ${!property.imageUrl ? '<span>暂无图片</span>' : ''}
+                        ${!property.imageUrl ? '<span>No Image</span>' : ''}
                     </div>
                     <div class="property-info">
                         <div class="property-title">${property.title}</div>
@@ -140,8 +140,8 @@ $(document).ready(function() {
                         <div class="property-location">${property.address}</div>
                         <div class="property-meta">
                             <div class="property-specs">
-                                ${property.bedrooms > 0 ? `<span class="property-spec">🛏️ ${property.bedrooms}室</span>` : ''}
-                                ${property.bathrooms > 0 ? `<span class="property-spec">🚿 ${property.bathrooms}卫</span>` : ''}
+                                ${property.bedrooms > 0 ? `<span class="property-spec">🛏️ ${property.bedrooms} bed</span>` : ''}
+                                ${property.bathrooms > 0 ? `<span class="property-spec">🚿 ${property.bathrooms} bath</span>` : ''}
                             </div>
                         </div>
                     </div>
@@ -150,16 +150,18 @@ $(document).ready(function() {
         `;
     }
     
-    // 格式化价格
+    // Format price
     function formatPrice(price) {
-        if (price >= 10000) {
-            return `¥${(price / 10000).toFixed(0)}万`;
+        if (price >= 1000000) {
+            return `$${(price / 1000000).toFixed(1)}M`;
+        } else if (price >= 1000) {
+            return `$${(price / 1000).toFixed(0)}K`;
         } else {
-            return `¥${price.toLocaleString()}`;
+            return `$${price.toLocaleString()}`;
         }
     }
     
-    // 显示分页
+    // Display pagination
     function displayPagination(data) {
         const $nav = $('#paginationNav');
         const $pagination = $('#pagination');
@@ -172,16 +174,16 @@ $(document).ready(function() {
         $nav.show();
         $pagination.empty();
         
-        // 上一页
+        // Previous page
         if (data.hasPreviousPage) {
             $pagination.append(`
                 <li class="page-item">
-                    <a class="page-link" href="#" data-page="${data.pageNumber - 1}">上一页</a>
+                    <a class="page-link" href="#" data-page="${data.pageNumber - 1}">Previous</a>
                 </li>
             `);
         }
         
-        // 页码
+        // Page numbers
         const startPage = Math.max(1, data.pageNumber - 2);
         const endPage = Math.min(data.totalPages, data.pageNumber + 2);
         
@@ -194,16 +196,16 @@ $(document).ready(function() {
             `);
         }
         
-        // 下一页
+        // Next page
         if (data.hasNextPage) {
             $pagination.append(`
                 <li class="page-item">
-                    <a class="page-link" href="#" data-page="${data.pageNumber + 1}">下一页</a>
+                    <a class="page-link" href="#" data-page="${data.pageNumber + 1}">Next</a>
                 </li>
             `);
         }
         
-        // 分页点击事件
+        // Pagination click event
         $pagination.find('a').click(function(e) {
             e.preventDefault();
             const page = parseInt($(this).data('page'));
@@ -215,7 +217,7 @@ $(document).ready(function() {
         });
     }
     
-    // 显示/隐藏加载指示器
+    // Show/hide loading indicator
     function showLoading(show) {
         if (show) {
             $('#loadingIndicator').show();
@@ -227,11 +229,11 @@ $(document).ready(function() {
         }
     }
     
-    // 显示错误信息
+    // Display error message
     function displayError(message) {
         $('#propertyResults').html(`
             <div class="alert alert-danger" role="alert">
-                <strong>错误：</strong> ${message}
+                <strong>Error:</strong> ${message}
             </div>
         `).show();
     }
