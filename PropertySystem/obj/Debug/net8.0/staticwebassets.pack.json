@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "/workspace/OpenHandsTest/PropertySystem/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/workspace/OpenHandsTest/PropertySystem/wwwroot/images/apartment1.jpg",
+      "PackagePath": "staticwebassets/images/apartment1.jpg"
+    },
+    {
+      "Id": "/workspace/OpenHandsTest/PropertySystem/wwwroot/images/apartment2.jpg",
+      "PackagePath": "staticwebassets/images/apartment2.jpg"
+    },
+    {
+      "Id": "/workspace/OpenHandsTest/PropertySystem/wwwroot/images/default-property.jpg",
+      "PackagePath": "staticwebassets/images/default-property.jpg"
+    },
+    {
+      "Id": "/workspace/OpenHandsTest/PropertySystem/wwwroot/images/house1.jpg",
+      "PackagePath": "staticwebassets/images/house1.jpg"
+    },
+    {
+      "Id": "/workspace/OpenHandsTest/PropertySystem/wwwroot/images/office1.jpg",
+      "PackagePath": "staticwebassets/images/office1.jpg"
+    },
+    {
+      "Id": "/workspace/OpenHandsTest/PropertySystem/wwwroot/images/villa1.jpg",
+      "PackagePath": "staticwebassets/images/villa1.jpg"
+    },
+    {
+      "Id": "/workspace/OpenHandsTest/PropertySystem/wwwroot/images/villa2.jpg",
+      "PackagePath": "staticwebassets/images/villa2.jpg"
+    },
+    {
+      "Id": "/workspace/OpenHandsTest/PropertySystem/wwwroot/js/property-search.js",
+      "PackagePath": "staticwebassets/js/property-search.js"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.PropertySystem.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.PropertySystem.props",
+      "PackagePath": "build\\PropertySystem.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.PropertySystem.props",
+      "PackagePath": "buildMultiTargeting\\PropertySystem.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.PropertySystem.props",
+      "PackagePath": "buildTransitive\\PropertySystem.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
